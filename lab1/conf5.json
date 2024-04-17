@@ -128,7 +128,7 @@
       "public_ip_address": "front",
       "deploy": [
         {
-          "type": "nginx",
+          "type": "nginx5",
           "port": 8081,
           "backend_address": "10.0.2.10",
           "backend_port1": 8080,

@@ -4,6 +4,7 @@ NGINX_PORT=$1
 SERVER_ADDRESS=$2
 BACKEND_PORT1=$3
 BACKEND_PORT2=$4
+BACKEND_PORT3=$5
 
 sudo apt-get update
 sudo apt-get upgrade -y
@@ -11,10 +12,11 @@ sudo apt-get install -y nginx
 
 cd ~/
 
-cat > loadbalancer.conf << EOL
+cat > loadbalancer2.conf << EOL
 upstream backend {
     server $SERVER_ADDRESS:$BACKEND_PORT1;
     server $SERVER_ADDRESS:$BACKEND_PORT2;
+    server $SERVER_ADDRESS:$BACKEND_PORT3;
 }
 
 server {
@@ -26,6 +28,6 @@ server {
 }
 EOL
 
-sudo mv loadbalancer.conf /etc/nginx/conf.d/loadbalancer.conf
+sudo mv loadbalancer2.conf /etc/nginx/conf.d/loadbalancer2.conf
 
 sudo nginx -s reload

@@ -166,8 +166,8 @@ for VM in "${VIRTUAL_MACHINES[@]}"; do
                     --parameters "$SERVER_IP" "$SERVER_PORT" "$SERVICE_PORT"
             ;;
 
-            nginx)
-                echo Setting up nginx
+            nginx2)
+                echo Setting up nginx2
 
                 SERVER_ADDRESS=$(jq -r '.backend_address' <<< $SERVICE)
                 SERVER_PORT1=$(jq -r '.backend_port1' <<< $SERVICE)
@@ -178,23 +178,23 @@ for VM in "${VIRTUAL_MACHINES[@]}"; do
                     --resource-group $RESOURCE_GROUP \
                     --name $VM_NAME \
                     --command-id RunShellScript \
-                    --scripts '@./nginx.sh' \
+                    --scripts '@./nginx2.sh' \
                     --parameters "$SERVICE_PORT"  "$SERVER_ADDRESS" "$SERVER_PORT1"  "$SERVER_PORT2" "$SERVER_PORT3"
             ;;
 
-            nginx-get)
-                echo Setting up nginx-get
+             nginx5)
+                echo Setting up nginx5
 
-                SERVER_ADDRESS=$(jq -r '.server_address' <<< $SERVICE)
-                GET_PORT=$(jq -r '.get_port' <<< $SERVICE)
-                DEFAULT_PORT=$(jq -r '.default_port' <<< $SERVICE)
+                SERVER_ADDRESS=$(jq -r '.backend_address' <<< $SERVICE)
+                SERVER_PORT1=$(jq -r '.backend_port1' <<< $SERVICE)
+                SERVER_PORT2=$(jq -r '.backend_port2' <<< $SERVICE)
 
                 az vm run-command invoke \
                     --resource-group $RESOURCE_GROUP \
                     --name $VM_NAME \
                     --command-id RunShellScript \
-                    --scripts '@./nginx-get.sh' \
-                    --parameters "$SERVICE_PORT"  "$SERVER_ADDRESS" "$GET_PORT"  "$DEFAULT_PORT"
+                    --scripts '@./nginx5.sh' \
+                    --parameters "$SERVICE_PORT"  "$SERVER_ADDRESS" "$SERVER_PORT1"  "$SERVER_PORT2"
             ;;
 
 
@@ -263,6 +263,3 @@ for PUBLIC_IP in "${PUBLIC_IPS[@]}"; do
       --query "ipAddress" \
       --output tsv
 done
-
-
-
