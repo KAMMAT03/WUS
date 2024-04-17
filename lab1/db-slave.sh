@@ -13,7 +13,7 @@ MASTER_DATABASE_ADDRESS=$4
 MASTER_DATABASE_PORT=$5
 
 MY_SQL_CONFIG="/etc/mysql/mysql.conf.d/mysqld.cnf"
-USER_DATABASE="https://raw.githubusercontent.com/bartlomiejkrawczyk/WUS-22Z/master/lab_1/scripts/mySql/user.sql"
+USER_DATABASE="https://raw.githubusercontent.com/KAMMAT03/WUS/main/lab1/user.sql"
 INIT_DATABASE="https://raw.githubusercontent.com/spring-petclinic/spring-petclinic-rest/master/src/main/resources/db/mysql/initDB.sql"
 POPULATE_DATABASE="https://raw.githubusercontent.com/spring-petclinic/spring-petclinic-rest/master/src/main/resources/db/mysql/populateDB.sql"
 
